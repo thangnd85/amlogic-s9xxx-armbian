@@ -10,8 +10,8 @@ inputs:
   # For build armbian -----
   armbian_soc:
     description: "Set Amlogic SoC."
-    required: false
-    default: "s905d_s905x3"
+    required: true
+    default: "s905x3"
   armbian_kernel:
     description: "Set kernel."
     required: false
