@@ -67,7 +67,7 @@ jobs:
       - name: Download source code
         id: down
         run: |
-          git clone --depth 1 https://github.com/armbian/build.git
+          git clone --depth 1 https://github.com/thangnd85/build.git
 
       - name: Compile Armbian [ ${{ env.ARMBIAN_BOARD }} ]
         id: compile
