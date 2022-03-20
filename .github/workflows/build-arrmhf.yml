@@ -57,10 +57,10 @@ jobs:
           fi
           echo "ARMBIAN_RELEASE=${set_release}" >> $GITHUB_ENV
 
-          ARR_BOARD=("lepotato" "odroidn2")
+          ARR_BOARD=("lepotato" "odroidc4")
           set_board="${{ github.event.inputs.set_board }}"
           if  [[ -z "${set_board}" || -z "$(echo "${ARR_BOARD[@]}" | grep -w "${set_board}")" ]]; then
-              set_board="lepotato"
+              set_board="odroidc4"
           fi
           echo "ARMBIAN_BOARD=${set_board}" >> $GITHUB_ENV
 
@@ -75,7 +75,7 @@ jobs:
           cd build/
           sudo chmod +x compile.sh
           sudo ./compile.sh BOARD=${{ env.ARMBIAN_BOARD }} RELEASE=${{ env.ARMBIAN_RELEASE }} BRANCH=current \
-                            BUILD_MINIMAL=no BUILD_DESKTOP=no HOST=armbian KERNEL_ONLY=no KERNEL_CONFIGURE=no \
+                            BUILD_MINIMAL=yes BUILD_DESKTOP=no HOST=armbian KERNEL_ONLY=no KERNEL_CONFIGURE=no \
                             CLEAN_LEVEL=make,debs COMPRESS_OUTPUTIMAGE=sha
           echo "::set-output name=status::success"
 
