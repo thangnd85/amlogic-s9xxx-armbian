@@ -16,11 +16,11 @@ on:
       set_board:
         description: "BOARD: lepotato / odroidn2"
         required: false
-        default: "lepotato"
+        default: "odroidc4"
       more_settings:
         description: "Rebuild: More parameter settings"
         required: false
-        default: ""
+        default: "-b s905x3"
   #schedule:
     #- cron: "0 17 * * 0"
 
