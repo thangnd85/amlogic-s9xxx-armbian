@@ -1,4 +1,4 @@
-# LED test instructions
+# LED screen display control instructions
 
 - The configuration file is placed in the [/usr/share/openvfd](https://github.com/ophub/amlogic-s9xxx-armbian/tree/main/build-armbian/common-files/files/usr/share/openvfd) directory of the `Armbian/OpenWrt` system, and the command file for `Armbian` systems is located at [/usr/sbin/armbian-led](https://github.com/ophub/amlogic-s9xxx-armbian/blob/main/build-armbian/common-files/files/usr/sbin/armbian-led), and the command file for `OpenWrt` systems is located at [/usr/sbin/openwrt-led](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/amlogic-s9xxx/common-files/files/usr/sbin/openwrt-led). If it is not in the current firmware, it can be uploaded manually, And give the file execute permission: `chmod +x /usr/share/openvfd/vfdservice /usr/sbin/*-led`
 
@@ -23,6 +23,18 @@ vfd_gpio_dat='0,69,0'
 
 - You can disable the LED display and clear system processes with the command `armbian-led 0`, before each test a new configuration, please execute this disable command first, and then execute `armbian-led 99` to make changes After the configuration test.
 
+- After the screen is displayed normally, you can add it to the self-starting task at boot, Please modify the `15` in the following command according to the serial number corresponding to the box in the `armbian-led` option:
+
+```yaml
+# Execute the following command in the terminal to add the Armbian system
+sed -i '/armbian-led/d' /etc/rc.local
+sed -i '/exit 0/i\armbian-led 15' /etc/rc.local
+
+# Execute the following command in the terminal to add the OpenWrt system
+sed -i '/openwrt-led/d' /etc/rc.local
+sed -i '/exit 0/i\openwrt-led 15' /etc/rc.local
+```
+
 - You are welcome to share the conf file(xxx.conf) of your own devices after testing, so that more people can benefit.
 
 |     Box    |   ID   |  Armbian Command  |   OpenWrt Command   |  Function   |
@@ -36,7 +48,7 @@ vfd_gpio_dat='0,69,0'
 | tx3        |  16    |  armbian-led 16   |   openwrt-led 16    | Enable LED  |
 | diy        |  99    |  armbian-led 99   |   openwrt-led 99    | Enable LED  |
 
-# LED 测试说明
+# LED 屏显示控制说明
 
 - 配置文件放在 `Armbian/OpenWrt` 系统的 [/usr/share/openvfd](https://github.com/ophub/amlogic-s9xxx-armbian/tree/main/build-armbian/common-files/files/usr/share/openvfd) 目录下，`Armbian` 系统的命令文件位于 [/usr/sbin/armbian-led](https://github.com/ophub/amlogic-s9xxx-armbian/blob/main/build-armbian/common-files/files/usr/sbin/armbian-led)，`OpenWrt` 系统的命令文件位于 [/usr/sbin/openwrt-led](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/amlogic-s9xxx/common-files/files/usr/sbin/openwrt-led)。如果当前固件中没有的可以手动上传，并赋予文件执行权限：`chmod +x /usr/share/openvfd/vfdservice /usr/sbin/*-led`
 
@@ -60,6 +72,18 @@ vfd_gpio_dat='0,69,0'
 - 将配置文件命名为 `diy.conf` 并上传至 `/usr/share/openvfd/conf` 目录下，输入命令 `armbian-led 99` 进行测试。
 
 - 通过命令 `armbian-led 0` 可以禁用 LED 显示并清除系统进程，在每次测试新的配置前，请先执行此禁用命令，再执行 `armbian-led 99` 进行更改后的配置测试。
+
+- 屏幕显示正常后，可以添加至开机自启动任务，下面命令中的 `15` 请根据 `armbian-led` 选项中盒子对应的序号进行修改：
+
+```yaml
+# Armbian 系统在终端执行以下命令添加
+sed -i '/armbian-led/d' /etc/rc.local
+sed -i '/exit 0/i\armbian-led 15' /etc/rc.local
+
+# OpenWrt 系统在终端执行以下命令添加
+sed -i '/openwrt-led/d' /etc/rc.local
+sed -i '/exit 0/i\openwrt-led 15' /etc/rc.local
+```
 
 - 欢迎大家测试后分享自己设备的配置文件（ diy.conf ），让更多人受益。
 
