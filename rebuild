@@ -47,7 +47,6 @@ armbian_outputpath="${make_path}/build/output/images"
 armbian_rebuild_file="${armbian_outputpath}/*.img"
 build_path="${make_path}/build-armbian"
 armbian_path="${build_path}/amlogic-armbian"
-dtb_path="${build_path}/amlogic-dtb"
 kernel_path="${build_path}/amlogic-kernel"
 uboot_path="${build_path}/amlogic-u-boot"
 configfiles_path="${build_path}/common-files"
@@ -437,7 +436,6 @@ refactor_files() {
     (cd ${tag_bootfs} && cp -f uInitrd-* uInitrd && cp -f vmlinuz-* zImage && sync)
 
     # 02 For dtb files
-    cp -f ${dtb_path}/*.dtb ${tag_bootfs}/dtb/amlogic && sync
     tar -xzf ${build_dtb} -C ${tag_bootfs}/dtb/amlogic && sync
 
     # 03 For usr/lib/modules/*
@@ -523,6 +521,10 @@ refactor_files() {
 
     # Make the .bashrc take effect, Default shell settings file: /etc/default/useradd
     echo '[[ "${SHELL}" == *bash && -f "${HOME}/.bashrc" ]] && . ${HOME}/.bashrc' >>etc/profile
+
+    # Reduce network latency [ A start job is running for raise network interfaces (5 mins 1 sec) ]
+    network_service="usr/lib/systemd/system/networking.service"
+    sed -i "s|TimeoutStartSec=.*|TimeoutStartSec=10sec|g" ${network_service} 2>/dev/null
 
     # Add tasks that need to be executed on initial startup
     armbian_firstrun="usr/lib/armbian/armbian-firstrun"
