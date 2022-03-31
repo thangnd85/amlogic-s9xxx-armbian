@@ -1,10 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-<<<<<<< HEAD:compile-kernel/tools/config/config-5.15.29
-# Linux/arm64 5.15.29 Kernel Configuration
-=======
 # Linux/arm64 5.15.31 Kernel Configuration
->>>>>>> upstream/main:compile-kernel/tools/config/config-5.15.31
 #
 CONFIG_CC_VERSION_TEXT="clang version 13.0.0 (https://github.com/llvm/llvm-project/ 24c8eaec9467b2aaf70b0db33a4e4dd415139a50)"
 CONFIG_GCC_VERSION=0

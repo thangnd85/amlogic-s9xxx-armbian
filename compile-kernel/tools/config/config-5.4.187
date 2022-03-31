@@ -1,10 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-<<<<<<< HEAD:compile-kernel/tools/config/config-5.4.185
-# Linux/arm64 5.4.185 Kernel Configuration
-=======
 # Linux/arm64 5.4.187 Kernel Configuration
->>>>>>> upstream/main:compile-kernel/tools/config/config-5.4.187
 #
 
 #
